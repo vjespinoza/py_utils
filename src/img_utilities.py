@@ -1,11 +1,19 @@
-from rembg import remove
+import os
+from pathlib import Path
+
 from PIL import Image
+from rembg import remove
 
 
-def remove_backgroud() -> None:
-    input_path = 'input_img.jpg'
-    output_path = 'output.png'
+def remove_background() -> None:
+    input_dir = 'resources/img'
+    output_dir = 'out/img'
+    extensions = ('jpg', 'png')
 
-    input_img = Image.open(input_path)
-    output_img = remove(input_img)
-    output_img.save(output_path)
+    for file in os.listdir(input_dir):
+        if file.endswith(extensions):
+            input_path = Path(f'{input_dir}/{file}')
+            output_path = Path(f'{output_dir}/{file}')
+            input_img = Image.open(input_path, mode='r')
+            output_img = remove(input_img)
+            output_img.save(fp=output_path, format='png')
