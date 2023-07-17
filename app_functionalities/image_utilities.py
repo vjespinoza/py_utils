@@ -6,9 +6,11 @@ from rembg import remove
 
 
 def remove_background() -> None:
-    input_dir = 'resources/img'
-    output_dir = 'out/img'
+    input_dir = '../resources/img'
+    output_dir = '../out/img'
     extensions = ('jpg', 'png')
+    print(f'*** {input_dir}')
+    print(f'*** {output_dir}')
 
     for file in os.listdir(input_dir):
         if file.endswith(extensions):
